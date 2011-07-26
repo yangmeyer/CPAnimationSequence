@@ -8,9 +8,17 @@ typedef void (^AnimationStep)(void);
 
 @interface CPAnimationStep : NSObject
 
++ (id) for:(NSTimeInterval)duration
+   animate:(AnimationStep)step;
+
 + (id) after:(NSTimeInterval)delay
 		 for:(NSTimeInterval)duration
-	 options:(UIViewAnimationOptions)theDuration
+	 animate:(AnimationStep)step;
+
+/** Defaults: delay=0.0, options=0. */
++ (id) after:(NSTimeInterval)delay
+		 for:(NSTimeInterval)duration
+	 options:(UIViewAnimationOptions)theOptions
 	 animate:(AnimationStep)step;
 
 @property (nonatomic) NSTimeInterval delay;

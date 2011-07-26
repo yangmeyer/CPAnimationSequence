@@ -11,6 +11,14 @@
 @synthesize step;
 @synthesize options;
 
++ (id) for:(NSTimeInterval)duration animate:(AnimationStep)step {
+   return [self after:0.0 for:duration options:0 animate:step];
+}
+
++ (id) after:(NSTimeInterval)delay for:(NSTimeInterval)duration animate:(AnimationStep)step {
+	return [self after:delay for:duration options:0 animate:step];
+}
+
 + (id) after:(NSTimeInterval)theDelay
 		 for:(NSTimeInterval)theDuration
 	 options:(UIViewAnimationOptions)theOptions
