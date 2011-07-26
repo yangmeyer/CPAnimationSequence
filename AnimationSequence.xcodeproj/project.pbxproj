@@ -13,9 +13,12 @@
 		2F7BFA0213DF2E8A0074BDD0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F7BFA0013DF2E8A0074BDD0 /* InfoPlist.strings */; };
 		2F7BFA0513DF2E8A0074BDD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BFA0413DF2E8A0074BDD0 /* main.m */; };
 		2F7BFA0813DF2E8A0074BDD0 /* AnimationSequenceAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BFA0713DF2E8A0074BDD0 /* AnimationSequenceAppDelegate.m */; };
-		2F7BFA0B13DF2E8A0074BDD0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7BFA0913DF2E8A0074BDD0 /* MainWindow.xib */; };
 		2F7BFA0E13DF2E8A0074BDD0 /* AnimationSequenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BFA0D13DF2E8A0074BDD0 /* AnimationSequenceViewController.m */; };
 		2F7BFA1113DF2E8A0074BDD0 /* AnimationSequenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7BFA0F13DF2E8A0074BDD0 /* AnimationSequenceViewController.xib */; };
+		2F7BFA1913DF2EEF0074BDD0 /* CPAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BFA1813DF2EEE0074BDD0 /* CPAnimationSequence.m */; };
+		2F7BFA1F13DF2F750074BDD0 /* CPAnimationStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BFA1E13DF2F750074BDD0 /* CPAnimationStep.m */; };
+		2F7BFA2213DF42640074BDD0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7BFA2013DF42630074BDD0 /* MainWindow.xib */; };
+		2F7BFA2413DF432F0074BDD0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2F7BFA2313DF432F0074BDD0 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,16 +26,21 @@
 		2F7BF9F713DF2E8A0074BDD0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2F7BF9F913DF2E8A0074BDD0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2F7BF9FB13DF2E8A0074BDD0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		2F7BF9FF13DF2E8A0074BDD0 /* AnimationSequence-Info.plist */ = {isa = PBXFileReference; path = "AnimationSequence-Info.plist"; sourceTree = "<group>"; };
+		2F7BF9FF13DF2E8A0074BDD0 /* AnimationSequence-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AnimationSequence-Info.plist"; sourceTree = "<group>"; };
 		2F7BFA0113DF2E8A0074BDD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		2F7BFA0313DF2E8A0074BDD0 /* AnimationSequence-Prefix.pch */ = {isa = PBXFileReference; path = "AnimationSequence-Prefix.pch"; sourceTree = "<group>"; };
+		2F7BFA0313DF2E8A0074BDD0 /* AnimationSequence-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnimationSequence-Prefix.pch"; sourceTree = "<group>"; };
 		2F7BFA0413DF2E8A0074BDD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2F7BFA0613DF2E8A0074BDD0 /* AnimationSequenceAppDelegate.h */ = {isa = PBXFileReference; path = AnimationSequenceAppDelegate.h; sourceTree = "<group>"; };
+		2F7BFA0613DF2E8A0074BDD0 /* AnimationSequenceAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationSequenceAppDelegate.h; sourceTree = "<group>"; };
 		2F7BFA0713DF2E8A0074BDD0 /* AnimationSequenceAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationSequenceAppDelegate.m; sourceTree = "<group>"; };
-		2F7BFA0A13DF2E8A0074BDD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		2F7BFA0C13DF2E8A0074BDD0 /* AnimationSequenceViewController.h */ = {isa = PBXFileReference; path = AnimationSequenceViewController.h; sourceTree = "<group>"; };
+		2F7BFA0C13DF2E8A0074BDD0 /* AnimationSequenceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationSequenceViewController.h; sourceTree = "<group>"; };
 		2F7BFA0D13DF2E8A0074BDD0 /* AnimationSequenceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationSequenceViewController.m; sourceTree = "<group>"; };
 		2F7BFA1013DF2E8A0074BDD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AnimationSequenceViewController.xib; sourceTree = "<group>"; };
+		2F7BFA1713DF2EEE0074BDD0 /* CPAnimationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationSequence.h; sourceTree = "<group>"; };
+		2F7BFA1813DF2EEE0074BDD0 /* CPAnimationSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnimationSequence.m; sourceTree = "<group>"; };
+		2F7BFA1D13DF2F750074BDD0 /* CPAnimationStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationStep.h; sourceTree = "<group>"; };
+		2F7BFA1E13DF2F750074BDD0 /* CPAnimationStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnimationStep.m; sourceTree = "<group>"; };
+		2F7BFA2113DF42640074BDD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		2F7BFA2313DF432F0074BDD0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +60,7 @@
 		2F7BF9E813DF2E8A0074BDD0 = {
 			isa = PBXGroup;
 			children = (
+				2F7BFA2313DF432F0074BDD0 /* README.md */,
 				2F7BF9FD13DF2E8A0074BDD0 /* AnimationSequence */,
 				2F7BF9F613DF2E8A0074BDD0 /* Frameworks */,
 				2F7BF9F413DF2E8A0074BDD0 /* Products */,
@@ -81,11 +90,14 @@
 			children = (
 				2F7BFA0613DF2E8A0074BDD0 /* AnimationSequenceAppDelegate.h */,
 				2F7BFA0713DF2E8A0074BDD0 /* AnimationSequenceAppDelegate.m */,
-				2F7BFA0913DF2E8A0074BDD0 /* MainWindow.xib */,
 				2F7BFA0C13DF2E8A0074BDD0 /* AnimationSequenceViewController.h */,
 				2F7BFA0D13DF2E8A0074BDD0 /* AnimationSequenceViewController.m */,
 				2F7BFA0F13DF2E8A0074BDD0 /* AnimationSequenceViewController.xib */,
 				2F7BF9FE13DF2E8A0074BDD0 /* Supporting Files */,
+				2F7BFA1713DF2EEE0074BDD0 /* CPAnimationSequence.h */,
+				2F7BFA1813DF2EEE0074BDD0 /* CPAnimationSequence.m */,
+				2F7BFA1D13DF2F750074BDD0 /* CPAnimationStep.h */,
+				2F7BFA1E13DF2F750074BDD0 /* CPAnimationStep.m */,
 			);
 			path = AnimationSequence;
 			sourceTree = "<group>";
@@ -95,6 +107,7 @@
 			children = (
 				2F7BF9FF13DF2E8A0074BDD0 /* AnimationSequence-Info.plist */,
 				2F7BFA0013DF2E8A0074BDD0 /* InfoPlist.strings */,
+				2F7BFA2013DF42630074BDD0 /* MainWindow.xib */,
 				2F7BFA0313DF2E8A0074BDD0 /* AnimationSequence-Prefix.pch */,
 				2F7BFA0413DF2E8A0074BDD0 /* main.m */,
 			);
@@ -126,6 +139,9 @@
 /* Begin PBXProject section */
 		2F7BF9EA13DF2E8A0074BDD0 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "compeople AG";
+			};
 			buildConfigurationList = 2F7BF9ED13DF2E8A0074BDD0 /* Build configuration list for PBXProject "AnimationSequence" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -149,8 +165,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F7BFA0213DF2E8A0074BDD0 /* InfoPlist.strings in Resources */,
-				2F7BFA0B13DF2E8A0074BDD0 /* MainWindow.xib in Resources */,
 				2F7BFA1113DF2E8A0074BDD0 /* AnimationSequenceViewController.xib in Resources */,
+				2F7BFA2213DF42640074BDD0 /* MainWindow.xib in Resources */,
+				2F7BFA2413DF432F0074BDD0 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +181,8 @@
 				2F7BFA0513DF2E8A0074BDD0 /* main.m in Sources */,
 				2F7BFA0813DF2E8A0074BDD0 /* AnimationSequenceAppDelegate.m in Sources */,
 				2F7BFA0E13DF2E8A0074BDD0 /* AnimationSequenceViewController.m in Sources */,
+				2F7BFA1913DF2EEF0074BDD0 /* CPAnimationSequence.m in Sources */,
+				2F7BFA1F13DF2F750074BDD0 /* CPAnimationStep.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,20 +197,20 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		2F7BFA0913DF2E8A0074BDD0 /* MainWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2F7BFA0A13DF2E8A0074BDD0 /* en */,
-			);
-			name = MainWindow.xib;
-			sourceTree = "<group>";
-		};
 		2F7BFA0F13DF2E8A0074BDD0 /* AnimationSequenceViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2F7BFA1013DF2E8A0074BDD0 /* en */,
 			);
 			name = AnimationSequenceViewController.xib;
+			sourceTree = "<group>";
+		};
+		2F7BFA2013DF42630074BDD0 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F7BFA2113DF42640074BDD0 /* en */,
+			);
+			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

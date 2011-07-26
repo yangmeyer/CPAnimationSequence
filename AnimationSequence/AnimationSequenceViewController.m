@@ -1,48 +1,50 @@
-//
-//  AnimationSequenceViewController.m
-//  AnimationSequence
-//
+
 //  Created by Yang Meyer on 26.07.11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
+//  Copyright 2011 compeople AG. All rights reserved.
 
 #import "AnimationSequenceViewController.h"
+#import "CPAnimationSequence.h"
 
 @implementation AnimationSequenceViewController
 
-- (void)dealloc
-{
-    [super dealloc];
-}
+@synthesize theBox;
+@synthesize sequence;
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
+- (void) dealloc {
+	[theBox release];
+	[sequence release];
+	[super dealloc];
 }
 
 #pragma mark - View lifecycle
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+- (void) viewDidLoad {
+	[super viewDidLoad];
+	self.sequence = [CPAnimationSequence sequenceWithSteps:
+		[CPAnimationStep after:0.5 for:0.3 options:0 animate:^{
+			self.theBox.frame = CGRectMake(150, 150, 100, 100);
+		}],
+		[CPAnimationStep after:0.5 for:0.3 options:0 animate:^{
+			self.theBox.backgroundColor = [UIColor orangeColor];
+		}],
+		[CPAnimationStep after:0.5 for:0.5 options:0 animate:^{
+			self.theBox.transform = CGAffineTransformMakeScale(2.0, 2.0);
+		}],
+		nil];
 }
-*/
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+- (void) viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	[self.sequence run];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
+- (void) viewDidUnload {
+	self.theBox = nil;
+	self.sequence = nil;
+	[super viewDidUnload];
+}
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
 }
 
