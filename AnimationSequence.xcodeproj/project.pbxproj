@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AEE638B1459F10C00416D8F /* CPAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEE63891459F10C00416D8F /* CPAnimationSequence.m */; };
+		0AEE638C1459F10C00416D8F /* CPAnimationStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEE638A1459F10C00416D8F /* CPAnimationStep.m */; };
 		2F7BF9F813DF2E8A0074BDD0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7BF9F713DF2E8A0074BDD0 /* UIKit.framework */; };
 		2F7BF9FA13DF2E8A0074BDD0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7BF9F913DF2E8A0074BDD0 /* Foundation.framework */; };
 		2F7BF9FC13DF2E8A0074BDD0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7BF9FB13DF2E8A0074BDD0 /* CoreGraphics.framework */; };
@@ -15,13 +17,15 @@
 		2F7BFA0813DF2E8A0074BDD0 /* AnimationSequenceAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BFA0713DF2E8A0074BDD0 /* AnimationSequenceAppDelegate.m */; };
 		2F7BFA0E13DF2E8A0074BDD0 /* AnimationSequenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BFA0D13DF2E8A0074BDD0 /* AnimationSequenceViewController.m */; };
 		2F7BFA1113DF2E8A0074BDD0 /* AnimationSequenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7BFA0F13DF2E8A0074BDD0 /* AnimationSequenceViewController.xib */; };
-		2F7BFA1913DF2EEF0074BDD0 /* CPAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BFA1813DF2EEE0074BDD0 /* CPAnimationSequence.m */; };
-		2F7BFA1F13DF2F750074BDD0 /* CPAnimationStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7BFA1E13DF2F750074BDD0 /* CPAnimationStep.m */; };
 		2F7BFA2213DF42640074BDD0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7BFA2013DF42630074BDD0 /* MainWindow.xib */; };
 		2F7BFA2413DF432F0074BDD0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2F7BFA2313DF432F0074BDD0 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0AEE63861459F10C00416D8F /* CPAnimationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationSequence.h; sourceTree = "<group>"; };
+		0AEE63871459F10C00416D8F /* CPAnimationStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationStep.h; sourceTree = "<group>"; };
+		0AEE63891459F10C00416D8F /* CPAnimationSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnimationSequence.m; sourceTree = "<group>"; };
+		0AEE638A1459F10C00416D8F /* CPAnimationStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnimationStep.m; sourceTree = "<group>"; };
 		2F7BF9F313DF2E8A0074BDD0 /* AnimationSequence.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimationSequence.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F7BF9F713DF2E8A0074BDD0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2F7BF9F913DF2E8A0074BDD0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -35,10 +39,6 @@
 		2F7BFA0C13DF2E8A0074BDD0 /* AnimationSequenceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationSequenceViewController.h; sourceTree = "<group>"; };
 		2F7BFA0D13DF2E8A0074BDD0 /* AnimationSequenceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationSequenceViewController.m; sourceTree = "<group>"; };
 		2F7BFA1013DF2E8A0074BDD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AnimationSequenceViewController.xib; sourceTree = "<group>"; };
-		2F7BFA1713DF2EEE0074BDD0 /* CPAnimationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationSequence.h; sourceTree = "<group>"; };
-		2F7BFA1813DF2EEE0074BDD0 /* CPAnimationSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnimationSequence.m; sourceTree = "<group>"; };
-		2F7BFA1D13DF2F750074BDD0 /* CPAnimationStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationStep.h; sourceTree = "<group>"; };
-		2F7BFA1E13DF2F750074BDD0 /* CPAnimationStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnimationStep.m; sourceTree = "<group>"; };
 		2F7BFA2113DF42640074BDD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		2F7BFA2313DF432F0074BDD0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,10 +57,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0AEE63851459F10C00416D8F /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				0AEE63861459F10C00416D8F /* CPAnimationSequence.h */,
+				0AEE63871459F10C00416D8F /* CPAnimationStep.h */,
+				0AEE63881459F10C00416D8F /* private */,
+			);
+			path = Component;
+			sourceTree = SOURCE_ROOT;
+		};
+		0AEE63881459F10C00416D8F /* private */ = {
+			isa = PBXGroup;
+			children = (
+				0AEE63891459F10C00416D8F /* CPAnimationSequence.m */,
+				0AEE638A1459F10C00416D8F /* CPAnimationStep.m */,
+			);
+			path = private;
+			sourceTree = "<group>";
+		};
 		2F7BF9E813DF2E8A0074BDD0 = {
 			isa = PBXGroup;
 			children = (
 				2F7BFA2313DF432F0074BDD0 /* README.md */,
+				0AEE63851459F10C00416D8F /* Component */,
 				2F7BF9FD13DF2E8A0074BDD0 /* AnimationSequence */,
 				2F7BF9F613DF2E8A0074BDD0 /* Frameworks */,
 				2F7BF9F413DF2E8A0074BDD0 /* Products */,
@@ -94,10 +114,6 @@
 				2F7BFA0D13DF2E8A0074BDD0 /* AnimationSequenceViewController.m */,
 				2F7BFA0F13DF2E8A0074BDD0 /* AnimationSequenceViewController.xib */,
 				2F7BF9FE13DF2E8A0074BDD0 /* Supporting Files */,
-				2F7BFA1713DF2EEE0074BDD0 /* CPAnimationSequence.h */,
-				2F7BFA1813DF2EEE0074BDD0 /* CPAnimationSequence.m */,
-				2F7BFA1D13DF2F750074BDD0 /* CPAnimationStep.h */,
-				2F7BFA1E13DF2F750074BDD0 /* CPAnimationStep.m */,
 			);
 			path = AnimationSequence;
 			sourceTree = "<group>";
@@ -181,8 +197,8 @@
 				2F7BFA0513DF2E8A0074BDD0 /* main.m in Sources */,
 				2F7BFA0813DF2E8A0074BDD0 /* AnimationSequenceAppDelegate.m in Sources */,
 				2F7BFA0E13DF2E8A0074BDD0 /* AnimationSequenceViewController.m in Sources */,
-				2F7BFA1913DF2EEF0074BDD0 /* CPAnimationSequence.m in Sources */,
-				2F7BFA1F13DF2F750074BDD0 /* CPAnimationStep.m in Sources */,
+				0AEE638B1459F10C00416D8F /* CPAnimationSequence.m in Sources */,
+				0AEE638C1459F10C00416D8F /* CPAnimationStep.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +313,7 @@
 				2F7BFA1613DF2E8A0074BDD0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
