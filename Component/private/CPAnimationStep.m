@@ -29,6 +29,10 @@
 
 #pragma mark construction
 
++ (id) after:(NSTimeInterval)delay animate:(AnimationStep)step {
+	return [self after:delay for:0.0 options:0 animate:step];
+}
+
 + (id) for:(NSTimeInterval)duration animate:(AnimationStep)step {
    return [self after:0.0 for:duration options:0 animate:step];
 }
@@ -54,6 +58,11 @@
 
 #pragma mark action
 
+// From http://stackoverflow.com/questions/4007023/blocks-instead-of-performselectorwithobjectafterdelay
++ (void) runBlock:(AnimationStep)block afterDelay:(NSTimeInterval)delay {
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC*delay), dispatch_get_current_queue(), block);
+}
+
 - (NSArray*) animationStepArray {
 	// subclasses must override this!
 	return [NSArray arrayWithObject:self];
@@ -72,7 +81,8 @@
 		[self runAnimated:animated]; // recurse!
 	};
 	CPAnimationStep* currentStep = [self.consumableSteps lastObject];
-	if (animated) {
+	// Note: do not animate to short steps
+	if (animated && currentStep.duration >= 0.02) {
 		[UIView animateWithDuration:currentStep.duration
 							  delay:currentStep.delay
 							options:currentStep.options
@@ -83,8 +93,16 @@
 							 }
 						 }];
 	} else {
-		currentStep.step();
-		completionStep();
+		void (^execution)(void) = ^{
+			currentStep.step();
+			completionStep();
+		};
+		
+		if (animated && currentStep.delay) {
+			[CPAnimationStep runBlock:execution afterDelay:currentStep.delay];
+		} else {
+			execution();
+		}
 	}
 }
 

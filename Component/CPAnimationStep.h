@@ -14,6 +14,9 @@ typedef void (^AnimationStep)(void);
 
 #pragma mark - constructors
 
++ (id) after:(NSTimeInterval)delay
+	 animate:(AnimationStep)step;
+
 + (id) for:(NSTimeInterval)duration
    animate:(AnimationStep)step;
 
