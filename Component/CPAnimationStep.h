@@ -33,4 +33,11 @@ typedef void (^AnimationStep)(void);
 @property (nonatomic, copy) AnimationStep step;
 @property (nonatomic) UIViewAnimationOptions options;
 
+#pragma mark - execution
+
+/** Starts the step execution. */
+- (void) runAnimated:(BOOL)animated;
+/** Shortcut for [step runAnimated:YES] */
+- (void) run;
+
 @end
