@@ -4,18 +4,18 @@
 
 #import "CPAnimationSequence.h"
 
-@interface CPAnimationSequence ()
-/** A temporary reverse queue of animation steps, i.e. from last to first.
-	It is created when the sequence is run, and is modified during the animation 
-	sequence, and is destroyed when the animation sequence finishes. */
-@property (nonatomic, retain) NSMutableArray* consumableSteps;
+@interface CPAnimationStep(hidden)
+- (NSArray*) animationStepArray;
+@end
+
+@interface CPAnimationSequence()
+@property (nonatomic, retain) NSArray* steps;
 @end
 
 #pragma mark -
 @implementation CPAnimationSequence
 
 @synthesize steps;
-@synthesize consumableSteps;
 
 #pragma mark - Object lifecycle
 
@@ -37,44 +37,36 @@
 }
 
 - (void) dealloc {
-	[steps release], steps = nil;
-	[consumableSteps release], consumableSteps = nil;
+	[steps release];
 	[super dealloc];
 }
 
-#pragma mark - Run the sequence
+#pragma mark - property override
 
-- (void) run {
-	[self runAnimated:YES];
+- (void)setDelay:(NSTimeInterval)delay {
+	// TODO: clarify how to handle this
+    NSAssert(NO, @"Delay for a sequence is not allowed!!");
 }
 
-- (void) runAnimated:(BOOL)animated {
-	if (!self.consumableSteps) {
-		self.consumableSteps = [[[NSMutableArray alloc] initWithArray:self.steps] autorelease];
+- (void)setDuration:(NSTimeInterval)duration {
+	// TODO: clarify what does it mean for the steps? Is the duration of the sequence 
+	// more important than the durations of it's steps?
+    NSAssert(NO, @"Duration for a sequence is not allowed!!");
+}
+
+- (void)setOptions:(UIViewAnimationOptions)options {
+	// TODO clarify what does it mean for the steps? Is that some kind of global option for all steps?
+    NSAssert(NO, @"Options for a sequence are not allowed!!");
+}
+
+#pragma mark - build the sequence
+
+- (NSArray*) animationStepArray {
+	NSMutableArray* array = [NSMutableArray arrayWithCapacity:[self.steps count]];
+	for (CPAnimationStep* current in self.steps) {
+		[array addObjectsFromArray:[current animationStepArray]];
 	}
-	if ([self.consumableSteps count] == 0) { // recursion anchor
-		self.consumableSteps = nil;
-		return; // we're done
-	}
-	AnimationStep completionStep = ^{
-		[self.consumableSteps removeLastObject];
-		[self runAnimated:animated]; // recurse!
-	};
-	CPAnimationStep* currentStep = [self.consumableSteps lastObject];
-	if (animated) {
-		[UIView animateWithDuration:currentStep.duration
-							  delay:currentStep.delay
-							options:currentStep.options
-						 animations:currentStep.step
-						 completion:^(BOOL finished) {
-							 if (finished) {
-								 completionStep();
-							 }
-						 }];
-	} else {
-		currentStep.step();
-		completionStep();
-	}
+	return array;
 }
 
 @end

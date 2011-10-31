@@ -55,7 +55,7 @@
 #pragma mark action
 
 - (NSArray*) animationStepArray {
-	// TODO sequence must override this!
+	// subclasses must override this!
 	return [NSArray arrayWithObject:self];
 }
 

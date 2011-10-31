@@ -21,23 +21,28 @@
 }
 
 - (IBAction) startAnimation {
-	[[CPAnimationStep			 for:0.5 animate:^{ self.theBox.alpha = 1.0-self.theBox.alpha; }] run];
-//	[[CPAnimationSequence sequenceWithSteps:
-//	  [CPAnimationStep			 for:0.5 animate:^{ self.startButton.alpha = 0.0; }],
-//	  [CPAnimationStep after:0.5 for:0.3 animate:^{ self.theBox.frame = CGRectMake(150, 150, 100, 100); }],
-//	  [CPAnimationStep           for:0.3 animate:^{ self.theBox.backgroundColor = [UIColor orangeColor]; }],
-//	  [CPAnimationStep after:0.5 for:0.5 animate:^{ self.theBox.transform = CGAffineTransformMakeScale(2.0, 2.0); }],
-//	  [CPAnimationStep			 for:0.5 animate:^{ self.revertButton.alpha = 1.0; }],
-//	  nil
-//	] run];
+	[[CPAnimationSequence sequenceWithSteps:
+	  [CPAnimationStep			 for:0.5 animate:^{ self.startButton.alpha = 0.0; }],
+	  [CPAnimationSequence sequenceWithSteps:
+	   [CPAnimationStep after:0.5 for:0.3 animate:^{ self.theBox.frame = CGRectMake(150, 150, 100, 100); }],
+	   [CPAnimationStep           for:0.3 animate:^{ self.theBox.backgroundColor = [UIColor orangeColor]; }],
+	   [CPAnimationStep after:0.5 for:0.5 animate:^{ self.theBox.transform = CGAffineTransformMakeScale(2.0, 2.0); }],
+	   nil
+	   ],
+	  [CPAnimationStep			 for:0.5 animate:^{ self.revertButton.alpha = 1.0; }],
+	  nil
+	] run];
 }
 
 - (IBAction) revertAnimation {
 	[[CPAnimationSequence sequenceWithSteps:
 	  [CPAnimationStep			 for:0.5 animate:^{ self.revertButton.alpha = 0.0; }],
-	  [CPAnimationStep after:0.5 for:0.5 animate:^{ self.theBox.transform = CGAffineTransformIdentity; }],
-	  [CPAnimationStep           for:0.3 animate:^{ self.theBox.backgroundColor = [UIColor greenColor]; }],
-	  [CPAnimationStep after:0.5 for:0.3 animate:^{ self.theBox.frame = CGRectMake(100, 100, 100, 100); }],
+	  [CPAnimationSequence sequenceWithSteps:
+	   [CPAnimationStep after:0.5 for:0.5 animate:^{ self.theBox.transform = CGAffineTransformIdentity; }],
+	   [CPAnimationStep           for:0.3 animate:^{ self.theBox.backgroundColor = [UIColor greenColor]; }],
+	   [CPAnimationStep after:0.5 for:0.3 animate:^{ self.theBox.frame = CGRectMake(100, 100, 100, 100); }],
+	   nil
+	   ],
 	  [CPAnimationStep			 for:0.5 animate:^{ self.startButton.alpha = 1.0; }],
 	  nil
 	] run];
