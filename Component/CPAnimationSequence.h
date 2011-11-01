@@ -5,15 +5,18 @@
 #import <Foundation/Foundation.h>
 #import "CPAnimationStep.h"
 
-@interface CPAnimationSequence : NSObject
+/** 
+ A CPAnimationSequence defines a sequence of CPAnimationStep objects. 
+ */
+@interface CPAnimationSequence : CPAnimationStep
+
+#pragma mark - constructors
 
 + (id) sequenceWithSteps:(CPAnimationStep*)first, ... NS_REQUIRES_NIL_TERMINATION;
 
-/** Animations steps, from first to last. */
-@property (nonatomic, retain) NSArray* steps;
+#pragma mark - properties (normally already set by the constructor)
 
-- (void) run;
-/** Default: animated=YES */
-- (void) runAnimated:(BOOL)animated;
+/** Animations steps, from first to last. */
+@property (nonatomic, retain, readonly) NSArray* steps;
 
 @end
