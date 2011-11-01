@@ -8,7 +8,11 @@
 
 @interface AnimationSequenceViewController : UIViewController
 
-@property (nonatomic, retain) IBOutlet UIView *theBox;
-@property (nonatomic, retain) CPAnimationSequence* sequence;
+@property (nonatomic, assign) IBOutlet UIView* theBox;
+@property (nonatomic, assign) IBOutlet UIButton* startButton;
+@property (nonatomic, assign) IBOutlet UIButton* revertButton;
+
+- (IBAction) startAnimation;
+- (IBAction) revertAnimation;
 
 @end
