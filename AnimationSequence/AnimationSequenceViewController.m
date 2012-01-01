@@ -7,11 +7,13 @@
 
 @interface AnimationSequenceViewController ()
 - (CPAnimationStep*) viewSpecificStartAnimation;
+- (void) highlightLabel:(UILabel*)labelToHighlight;
 @end
 
 @implementation AnimationSequenceViewController
 
 @synthesize theBox, startButton, revertButton;
+@synthesize labelStep1, labelStep2, labelStep3;
 
 #pragma mark - CPAnimationSequence demo
 
@@ -28,9 +30,13 @@
 	[[CPAnimationSequence sequenceWithSteps:
 	  [CPAnimationStep for:0.5 animate:^{ self.revertButton.alpha = 0.0; }],
 	  [CPAnimationSequence sequenceWithSteps:
-	   [CPAnimationStep after:1.0 for:1.0 animate:^{ self.theBox.transform = CGAffineTransformIdentity; }],
-	   [CPAnimationStep           for:1.0 animate:^{ self.theBox.backgroundColor = [UIColor greenColor]; }],
-	   [CPAnimationStep after:1.0 for:1.0 animate:^{ self.theBox.frame = CGRectMake(100, 100, 100, 100); }],
+	   [CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep3];
+													 self.theBox.transform = CGAffineTransformIdentity; }],
+	   [CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep2];
+													 self.theBox.backgroundColor = [UIColor greenColor]; }],
+	   [CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep1];
+													 self.theBox.frame = CGRectMake(100, 100, 100, 100); }],
+	   [CPAnimationStep after:0.0         animate:^{ [self highlightLabel:nil]; }],
 	   nil
 	   ],
 	  [CPAnimationStep for:0.5 animate:^{ self.startButton.alpha = 1.0; }],
@@ -43,11 +49,24 @@
 // one point and insert it into another sequence somewhere else.
 - (CPAnimationStep*) viewSpecificStartAnimation {
 	return [CPAnimationSequence sequenceWithSteps:
-			[CPAnimationStep after:1.0 for:1.0 animate:^{ self.theBox.frame = CGRectMake(150, 150, 100, 100); }],
-			[CPAnimationStep           for:1.0 animate:^{ self.theBox.backgroundColor = [UIColor orangeColor]; }],
-			[CPAnimationStep after:1.0 for:1.0 animate:^{ self.theBox.transform = CGAffineTransformMakeScale(2.0, 2.0); }],
-			nil
-			];
+			[CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep1];
+														  self.theBox.frame = CGRectMake(150, 150, 100, 100); }],
+			[CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep2];
+														  self.theBox.backgroundColor = [UIColor orangeColor]; }],
+			[CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep3];
+														  self.theBox.transform = CGAffineTransformMakeScale(2.0, 2.0); }],
+			[CPAnimationStep after:0.0         animate:^{ [self highlightLabel:nil]; }],
+			nil];
+}
+
+#pragma mark - Helper
+
+- (void) highlightLabel:(UILabel*)labelToHighlight {
+	for (UILabel* aStepLabel in [NSArray arrayWithObjects:self.labelStep1, self.labelStep2, self.labelStep3, nil]) {
+		aStepLabel.backgroundColor = (aStepLabel == labelToHighlight
+									  ? [UIColor colorWithWhite:0.9 alpha:1.0]
+									  : [UIColor clearColor]);
+	}
 }
 
 #pragma mark - UIKit overrides

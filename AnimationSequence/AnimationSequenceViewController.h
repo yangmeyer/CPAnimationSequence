@@ -1,6 +1,6 @@
 
 //  Created by Yang Meyer on 26.07.11.
-//  Copyright 2011 compeople AG. All rights reserved.
+//  Copyright 2011-2012 compeople AG. All rights reserved.
 
 #import <UIKit/UIKit.h>
 
@@ -12,6 +12,10 @@
 @property (nonatomic, weak) IBOutlet UIView* theBox;
 @property (nonatomic, weak) IBOutlet UIButton* startButton;
 @property (nonatomic, weak) IBOutlet UIButton* revertButton;
+
+@property (weak, nonatomic) IBOutlet UILabel* labelStep1;
+@property (weak, nonatomic) IBOutlet UILabel* labelStep2;
+@property (weak, nonatomic) IBOutlet UILabel* labelStep3;
 
 - (IBAction) startAnimation;
 - (IBAction) revertAnimation;
