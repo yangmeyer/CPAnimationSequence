@@ -1,36 +1,19 @@
 
 //  Created by Yang Meyer on 26.07.11.
-//  Copyright 2011 compeople AG. All rights reserved.
+//  Copyright 2011-2012 compeople AG. All rights reserved.
 
 #import "AnimationSequenceViewController.h"
 #import "CPAnimationSequence.h"
+
+@interface AnimationSequenceViewController ()
+- (CPAnimationStep*) viewSpecificStartAnimation;
+@end
 
 @implementation AnimationSequenceViewController
 
 @synthesize theBox, startButton, revertButton;
 
-- (void) viewDidUnload {
-	[super viewDidUnload];
-	self.theBox = nil;
-	self.startButton = nil;
-	self.revertButton = nil;
-}
-
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
-}
-
-// Note: This part of the animation may be implemented in a different class, e.g. the view.
-// With the composite pattern in place you can define animation steps at one point and 
-// execute them at another point later.
-- (CPAnimationStep*) viewSpecificStartAnimation {
-	return [CPAnimationSequence sequenceWithSteps:
-			[CPAnimationStep after:1.0 for:1.0 animate:^{ self.theBox.frame = CGRectMake(150, 150, 100, 100); }],
-			[CPAnimationStep           for:1.0 animate:^{ self.theBox.backgroundColor = [UIColor orangeColor]; }],
-			[CPAnimationStep after:1.0 for:1.0 animate:^{ self.theBox.transform = CGAffineTransformMakeScale(2.0, 2.0); }],
-			nil
-			];
-}
+#pragma mark - CPAnimationSequence demo
 
 - (IBAction) startAnimation {
 	CPAnimationSequence* animationSequence = [CPAnimationSequence sequenceWithSteps:
@@ -53,6 +36,31 @@
 	  [CPAnimationStep for:0.5 animate:^{ self.startButton.alpha = 1.0; }],
 	  nil
 	] run];
+}
+
+// Note: This part of the animation sequence may be implemented elsewhere.
+// Thanks to the composite-pattern implementation, you can define an animation sequence at
+// one point and insert it into another sequence somewhere else.
+- (CPAnimationStep*) viewSpecificStartAnimation {
+	return [CPAnimationSequence sequenceWithSteps:
+			[CPAnimationStep after:1.0 for:1.0 animate:^{ self.theBox.frame = CGRectMake(150, 150, 100, 100); }],
+			[CPAnimationStep           for:1.0 animate:^{ self.theBox.backgroundColor = [UIColor orangeColor]; }],
+			[CPAnimationStep after:1.0 for:1.0 animate:^{ self.theBox.transform = CGAffineTransformMakeScale(2.0, 2.0); }],
+			nil
+			];
+}
+
+#pragma mark - UIKit overrides
+
+- (void) viewDidUnload {
+	[super viewDidUnload];
+	self.theBox = nil;
+	self.startButton = nil;
+	self.revertButton = nil;
+}
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
 }
 
 @end
