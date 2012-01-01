@@ -1,6 +1,6 @@
 
 //  Created by Yang Meyer on 26.07.11.
-//  Copyright 2011 compeople AG. All rights reserved.
+//  Copyright 2011-2012 compeople AG. All rights reserved.
 
 #import "CPAnimationSequence.h"
 
@@ -43,20 +43,16 @@
 
 #pragma mark - property override
 
-- (void)setDelay:(NSTimeInterval)delay {
-	// TODO: clarify how to handle this
-    NSAssert(NO, @"Delay for a sequence is not allowed!!");
+- (void) setDelay:(NSTimeInterval)delay {
+    NSAssert(NO, @"Setting a delay on a sequence is undefined and therefore disallowed!");
 }
 
-- (void)setDuration:(NSTimeInterval)duration {
-	// TODO: clarify what does it mean for the steps? Is the duration of the sequence 
-	// more important than the durations of it's steps?
-    NSAssert(NO, @"Duration for a sequence is not allowed!!");
+- (void) setDuration:(NSTimeInterval)duration {
+    NSAssert(NO, @"Setting a duration on a sequence is undefined and therefore disallowed!");
 }
 
-- (void)setOptions:(UIViewAnimationOptions)options {
-	// TODO clarify what does it mean for the steps? Is that some kind of global option for all steps?
-    NSAssert(NO, @"Options for a sequence are not allowed!!");
+- (void) setOptions:(UIViewAnimationOptions)options {
+    NSAssert(NO, @"Setting options on a sequence is undefined and therefore disallowed!");
 }
 
 #pragma mark - build the sequence
@@ -67,6 +63,21 @@
 		[array addObjectsFromArray:[current animationStepArray]];
 	}
 	return array;
+}
+
+#pragma mark - pretty-print
+
+- (NSString*) description {
+	NSMutableString* sequenceBody = [[[NSMutableString alloc] initWithCapacity:100*[self.steps count]] autorelease];
+	for (CPAnimationStep* step in self.steps) {
+		[sequenceBody appendString:[step description]];
+	}
+	// indent
+	[sequenceBody replaceOccurrencesOfString:@"\n"
+								 withString:@"\n  "
+									options:NSCaseInsensitiveSearch
+									  range:NSMakeRange(0, [sequenceBody length])];
+	return [NSString stringWithFormat:@"\n(sequence:%@\n)", sequenceBody];
 }
 
 @end

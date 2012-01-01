@@ -1,12 +1,16 @@
 
 //  Created by Yang Meyer on 26.07.11.
-//  Copyright 2011 compeople AG. All rights reserved.
+//  Copyright 2011-2012 compeople AG. All rights reserved.
 
 #import <Foundation/Foundation.h>
 #import "CPAnimationStep.h"
 
 /** 
- A CPAnimationSequence defines a sequence of CPAnimationStep objects. 
+ A CPAnimationSequence defines a sequence of CPAnimationStep objects, which can
+ be `-run` animatedly or non-animatedly.
+ 
+ CPAnimationSequence implements the Composite design pattern, with CPAnimationStep
+ as the base class.
  */
 @interface CPAnimationSequence : CPAnimationStep
 
@@ -14,7 +18,7 @@
 
 + (id) sequenceWithSteps:(CPAnimationStep*)first, ... NS_REQUIRES_NIL_TERMINATION;
 
-#pragma mark - properties (normally already set by the constructor)
+#pragma mark - properties
 
 /** Animations steps, from first to last. */
 @property (nonatomic, retain, readonly) NSArray* steps;

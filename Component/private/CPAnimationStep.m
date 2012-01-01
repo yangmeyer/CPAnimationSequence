@@ -1,6 +1,6 @@
 
 //  Created by Yang Meyer on 26.07.11.
-//  Copyright 2011 compeople AG. All rights reserved.
+//  Copyright 2011-2012 compeople AG. All rights reserved.
 
 #import "CPAnimationStep.h"
 
@@ -21,10 +21,6 @@
 - (void) dealloc {
 	[consumableSteps release];
 	[super dealloc];
-}
-
-- (NSString*) description {
-	return [NSString stringWithFormat:@"%@ after:%f for:%f", [self class], self.delay, self.duration];
 }
 
 #pragma mark construction
@@ -108,6 +104,25 @@
 
 - (void) run {
 	[self runAnimated:YES];
+}
+
+#pragma mark - pretty-print
+
+- (NSString*) description {
+	NSMutableString* result = [[[NSMutableString alloc] initWithCapacity:100] autorelease];
+	[result appendString:@"\n["];
+	if (self.delay > 0.0) {
+		[result appendFormat:@"after:%.1f ", self.delay];
+	}
+	if (self.duration > 0.0) {
+		[result appendFormat:@"for:%.1f ", self.duration];
+	}
+	if (self.options > 0) {
+		[result appendFormat:@"options:%d ", self.options];
+	}
+	[result appendFormat:@"animate:%@", self.step];
+	[result appendString:@"]"];
+	return result;
 }
 
 @end
