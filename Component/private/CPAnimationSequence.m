@@ -9,7 +9,7 @@
 @end
 
 @interface CPAnimationSequence()
-@property (nonatomic, retain) NSArray* steps;
+@property (nonatomic, strong, readwrite) NSArray* steps;
 @end
 
 #pragma mark -
@@ -22,7 +22,7 @@
 + (id) sequenceWithSteps:(CPAnimationStep*)first, ... {
 	CPAnimationSequence* instance = [[self alloc] init];
 	if (instance) {
-		NSMutableArray* tempSteps = [[[NSMutableArray alloc] initWithCapacity:10] autorelease];
+		NSMutableArray* tempSteps = [[NSMutableArray alloc] initWithCapacity:10];
 		va_list args;
 		va_start(args, first);
 		[tempSteps insertObject:first atIndex:0];
@@ -36,10 +36,6 @@
 	return instance;
 }
 
-- (void) dealloc {
-	[steps release];
-	[super dealloc];
-}
 
 #pragma mark - property override
 
@@ -68,7 +64,7 @@
 #pragma mark - pretty-print
 
 - (NSString*) description {
-	NSMutableString* sequenceBody = [[[NSMutableString alloc] initWithCapacity:100*[self.steps count]] autorelease];
+	NSMutableString* sequenceBody = [[NSMutableString alloc] initWithCapacity:100*[self.steps count]];
 	for (CPAnimationStep* step in self.steps) {
 		[sequenceBody appendString:[step description]];
 	}

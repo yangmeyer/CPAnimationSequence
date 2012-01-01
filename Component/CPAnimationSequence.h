@@ -21,6 +21,6 @@
 #pragma mark - properties
 
 /** Animations steps, from first to last. */
-@property (nonatomic, retain, readonly) NSArray* steps;
+@property (nonatomic, strong, readonly) NSArray* steps;
 
 @end
