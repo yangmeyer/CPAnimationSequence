@@ -8,9 +8,10 @@
 
 @interface AnimationSequenceViewController : UIViewController
 
-@property (nonatomic, assign) IBOutlet UIView* theBox;
-@property (nonatomic, assign) IBOutlet UIButton* startButton;
-@property (nonatomic, assign) IBOutlet UIButton* revertButton;
+// If you need to target iOS 4.3, use `unsafe_unretained` instead of `weak` (or use `strong` and release the views appropriately).
+@property (nonatomic, weak) IBOutlet UIView* theBox;
+@property (nonatomic, weak) IBOutlet UIButton* startButton;
+@property (nonatomic, weak) IBOutlet UIButton* revertButton;
 
 - (IBAction) startAnimation;
 - (IBAction) revertAnimation;

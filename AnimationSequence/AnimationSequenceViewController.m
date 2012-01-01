@@ -52,13 +52,6 @@
 
 #pragma mark - UIKit overrides
 
-- (void) viewDidUnload {
-	[super viewDidUnload];
-	self.theBox = nil;
-	self.startButton = nil;
-	self.revertButton = nil;
-}
-
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
 }

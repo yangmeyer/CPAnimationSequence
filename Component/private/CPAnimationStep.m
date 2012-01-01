@@ -8,7 +8,7 @@
 /** A temporary reverse queue of animation steps, i.e. from last to first.
  It is created when the step is run, and is modified during the animation, 
  and is destroyed when the animation finishes. */
-@property (nonatomic, retain) NSMutableArray* consumableSteps;
+@property (nonatomic, strong) NSMutableArray* consumableSteps;
 @end
 
 @implementation CPAnimationStep
@@ -18,10 +18,6 @@
 
 #pragma mark overrides
 
-- (void) dealloc {
-	[consumableSteps release];
-	[super dealloc];
-}
 
 #pragma mark construction
 
@@ -47,7 +43,7 @@
 		instance.delay = theDelay;
 		instance.duration = theDuration;
 		instance.options = theOptions;
-		instance.step = [[theStep copy] autorelease];
+		instance.step = [theStep copy];
 	}
 	return instance;
 }
@@ -66,7 +62,7 @@
 
 - (void) runAnimated:(BOOL)animated {
 	if (!self.consumableSteps) {
-		self.consumableSteps = [[[NSMutableArray alloc] initWithArray:[self animationStepArray]] autorelease];
+		self.consumableSteps = [[NSMutableArray alloc] initWithArray:[self animationStepArray]];
 	}
 	if (![self.consumableSteps count]) { // recursion anchor
 		self.consumableSteps = nil;
@@ -109,7 +105,7 @@
 #pragma mark - pretty-print
 
 - (NSString*) description {
-	NSMutableString* result = [[[NSMutableString alloc] initWithCapacity:100] autorelease];
+	NSMutableString* result = [[NSMutableString alloc] initWithCapacity:100];
 	[result appendString:@"\n["];
 	if (self.delay > 0.0) {
 		[result appendFormat:@"after:%.1f ", self.delay];
