@@ -15,6 +15,7 @@
 
 @synthesize delay, duration, step, options;
 @synthesize consumableSteps;
+@synthesize completion;
 
 #pragma mark overrides
 
@@ -33,19 +34,41 @@
 	return [self after:delay for:duration options:0 animate:step];
 }
 
++ (id)  for:(NSTimeInterval)duration
+   animate:(AnimationStep)step
+completion:(AnimationCompletion)completion {
+    return [self after:0 for:duration options:nil animate:step completion:completion];
+}
+
 + (id) after:(NSTimeInterval)theDelay
 		 for:(NSTimeInterval)theDuration
 	 options:(UIViewAnimationOptions)theOptions
 	 animate:(AnimationStep)theStep {
-	
+     return [self after:theDelay for:theDuration options:theOptions animate:theStep completion:nil];
+}
+
++ (id) after:(NSTimeInterval)delay
+         for:(NSTimeInterval)duration
+     animate:(AnimationStep)step
+  completion:(AnimationCompletion)completion {
+    return [self after:delay for:duration options:nil animate:step completion:completion];
+}
+
++ (id) after:(NSTimeInterval)delay
+         for:(NSTimeInterval)duration
+     options:(UIViewAnimationOptions)options
+     animate:(AnimationStep)step
+  completion:(void (^)(BOOL finished))completion {
+    
 	CPAnimationStep* instance = [[self alloc] init];
-	if (instance) {
-		instance.delay = theDelay;
-		instance.duration = theDuration;
-		instance.options = theOptions;
-		instance.step = [theStep copy];
-	}
-	return instance;
+    if (instance) {
+        instance.delay = delay;
+        instance.duration = duration;
+        instance.options = options;
+        instance.step = [step copy];
+        instance.completion = completion;
+    }
+    return instance;
 }
 
 #pragma mark action
@@ -75,15 +98,21 @@
 	CPAnimationStep* currentStep = [self.consumableSteps lastObject];
 	// Note: do not animate to short steps
 	if (animated && currentStep.duration >= 0.02) {
+        
+        void (^completionBlockWrapper)(BOOL finished) = ^(BOOL finished) {
+            if (finished) {
+                completionStep();
+            }
+            if (currentStep.completion) {
+                currentStep.completion(finished);
+            }
+        };
+        
 		[UIView animateWithDuration:currentStep.duration
 							  delay:currentStep.delay
 							options:currentStep.options
 						 animations:currentStep.step
-						 completion:^(BOOL finished) {
-							 if (finished) {
-								 completionStep();
-							 }
-						 }];
+						 completion:completionBlockWrapper];
 	} else {
 		void (^execution)(void) = ^{
 			currentStep.step();
