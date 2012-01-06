@@ -6,6 +6,7 @@
 
 /** Helper type definition for the component. */
 typedef void (^AnimationStep)(void);
+typedef void (^AnimationCompletion)(BOOL finished);
 
 /** 
  A CPAnimationStep defines a single animation object with a delay, duration, execution block and animation options.
@@ -29,12 +30,28 @@ typedef void (^AnimationStep)(void);
 	 options:(UIViewAnimationOptions)theOptions
 	 animate:(AnimationStep)step;
 
++ (id) for:(NSTimeInterval)duration
+   animate:(AnimationStep)step
+completion:(AnimationCompletion)completion;
+
++ (id) after:(NSTimeInterval)delay
+         for:(NSTimeInterval)duration
+     animate:(AnimationStep)step
+  completion:(AnimationCompletion)completion;
+
++ (id) after:(NSTimeInterval)delay
+         for:(NSTimeInterval)duration
+     options:(UIViewAnimationOptions)theOption
+     animate:(AnimationStep)step
+  completion:(AnimationCompletion)completion;
+
 #pragma mark - properties (normally already set by the constructor)
 
 @property (nonatomic) NSTimeInterval delay;
 @property (nonatomic) NSTimeInterval duration;
 @property (nonatomic, copy) AnimationStep step;
 @property (nonatomic) UIViewAnimationOptions options;
+@property (nonatomic, copy) AnimationCompletion completion;
 
 #pragma mark - execution
 
