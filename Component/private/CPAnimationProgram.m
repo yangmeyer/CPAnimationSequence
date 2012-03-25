@@ -6,6 +6,7 @@
 
 @interface CPAnimationStep(hidden)
 - (NSArray*) animationStepArray;
+- (AnimationStep) animationStep:(BOOL)animated;
 @end
 
 @interface CPAnimationProgram()
@@ -16,6 +17,7 @@
 @implementation CPAnimationProgram
 
 @synthesize steps;
+@synthesize duration;
 
 #pragma mark - Object lifecycle
 
@@ -51,14 +53,36 @@
     NSAssert(NO, @"Setting options on a program is undefined and therefore disallowed!");
 }
 
-#pragma mark - build the program
+#pragma mark - build the sequence
+
+- (NSTimeInterval) longestDuration {
+	CPAnimationStep* longestStep = nil;
+	for (CPAnimationStep* current in self.steps) {
+		NSTimeInterval currentDuration = current.delay+current.duration;
+		if (currentDuration > longestStep.delay+longestStep.duration) {
+			longestStep = current;
+		}
+	}
+	NSAssert(longestStep, @"Program seems to contain no steps.");
+	return self.delay + longestStep.delay + longestStep.duration;
+}
 
 - (NSArray*) animationStepArray {
-	NSMutableArray* array = [NSMutableArray arrayWithCapacity:[self.steps count]];
-	for (CPAnimationStep* current in self.steps) {
-		[array addObjectsFromArray:[current animationStepArray]];
-	}
+	NSMutableArray* array = [NSMutableArray arrayWithCapacity:3];
+	// Note: reverse order!
+	[array addObject:[CPAnimationStep after:[self longestDuration] animate:^{}]];
+    [array addObject:self];
+	[array addObject:[CPAnimationStep after:self.delay animate:^{}]];
 	return array;
+}
+
+- (AnimationStep) animationStep:(BOOL)animated {
+	AnimationStep programStep = ^{
+		for (CPAnimationStep* current in self.steps) {
+			[current runAnimated:animated];
+		}
+	};
+	return [programStep copy];
 }
 
 #pragma mark - pretty-print

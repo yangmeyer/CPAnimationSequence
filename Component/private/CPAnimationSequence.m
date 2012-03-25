@@ -47,6 +47,15 @@
     NSAssert(NO, @"Setting a duration on a sequence is undefined and therefore disallowed!");
 }
 
+- (NSTimeInterval) duration {
+	NSTimeInterval fullDuration = 0;
+	for (CPAnimationStep* current in self.animationStepArray) {
+		fullDuration += current.delay;
+		fullDuration += current.duration;
+	}
+	return fullDuration+self.delay;
+}
+
 - (void) setOptions:(UIViewAnimationOptions)options {
     NSAssert(NO, @"Setting options on a sequence is undefined and therefore disallowed!");
 }
