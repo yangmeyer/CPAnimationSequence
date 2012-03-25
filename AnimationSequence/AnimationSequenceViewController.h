@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel* labelStep2;
 @property (weak, nonatomic) IBOutlet UILabel* labelStep3;
 
+@property (nonatomic, weak) IBOutlet UIView* theIndicator;
+
 - (IBAction) startAnimation;
 - (IBAction) revertAnimation;
 
