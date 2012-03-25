@@ -9,6 +9,8 @@
  A CPAnimationSequence defines a sequence of CPAnimationStep objects, which can
  be `-run` animatedly or non-animatedly.
  
+ The delay property will be interpreted from end point of the previous step.
+
  CPAnimationSequence implements the Composite design pattern, with CPAnimationStep
  as the base class.
  */
