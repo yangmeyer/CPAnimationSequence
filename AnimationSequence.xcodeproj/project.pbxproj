@@ -88,7 +88,7 @@
 			children = (
 				2F7BFA2313DF432F0074BDD0 /* README.md */,
 				0AEE63851459F10C00416D8F /* Component */,
-				2F7BF9FD13DF2E8A0074BDD0 /* AnimationSequence */,
+				2F7BF9FD13DF2E8A0074BDD0 /* Demo */,
 				2F7BF9F613DF2E8A0074BDD0 /* Frameworks */,
 				2F7BF9F413DF2E8A0074BDD0 /* Products */,
 			);
@@ -112,7 +112,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2F7BF9FD13DF2E8A0074BDD0 /* AnimationSequence */ = {
+		2F7BF9FD13DF2E8A0074BDD0 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
 				0ADF9611151F88380010E060 /* arrow.png */,
@@ -123,6 +123,7 @@
 				2F7BFA0F13DF2E8A0074BDD0 /* AnimationSequenceViewController.xib */,
 				2F7BF9FE13DF2E8A0074BDD0 /* Supporting Files */,
 			);
+			name = Demo;
 			path = AnimationSequence;
 			sourceTree = "<group>";
 		};
