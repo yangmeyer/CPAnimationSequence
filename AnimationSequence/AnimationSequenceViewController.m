@@ -19,38 +19,38 @@
 
 @implementation AnimationSequenceViewController
 
-@synthesize theBox, startButton, revertButton, theIndicator;
+@synthesize theBox, startButton, revertButton;
 @synthesize labelHeader, labelStep1, labelStep2, labelStep3;
+@synthesize indicatorShoutout, theIndicator;
 
 #pragma mark - CPAnimationSequence demo
 
 - (IBAction) startAnimation {
 	CPAnimationSequence* animationSequence = [CPAnimationSequence sequenceWithSteps:
-	  [CPAnimationStep after:0.0 for:0.0 animate:^{ self.labelHeader.text = @"Running:";}],		// zero time start block
-	  [CPAnimationStep for:0.5 animate:^{ self.startButton.alpha = 0.0; }],						// first animation
-	  [self viewSpecificStartAnimation],														// second animation (composite pattern can be another sequence/program inside)
-	  [CPAnimationStep for:0.5 animate:^{ self.revertButton.alpha = 1.0; }],					// third animation
-	  [CPAnimationStep after:0.0 for:0.0 animate:^{ self.labelHeader.text = @"Animation:";}],	// zero time completion block
+	  [CPAnimationStep for:0.0 animate:^{ self.labelHeader.text = @"Running:";}],	// zero time start block
+	  [CPAnimationStep for:0.5 animate:^{ self.startButton.alpha = 0.0; }],			// some setup animation
+	  [self viewSpecificStartAnimation],											// main animation
+	  [CPAnimationStep for:0.5 animate:^{ self.revertButton.alpha = 1.0; }],		// some teardown animation
+	  [CPAnimationStep for:0.0 animate:^{ self.labelHeader.text = @"Animation:";}],	// zero time completion block
 	  nil];
 	[animationSequence run];
 }
 
 - (IBAction) revertAnimation {
 	[[CPAnimationSequence sequenceWithSteps:
-	  [CPAnimationStep after:0.0 for:0.0 animate:^{ self.labelHeader.text = @"Running:";}],		// zero time start block
-	  [CPAnimationStep for:0.5 animate:^{ self.revertButton.alpha = 0.0; }],					// first animation
-	  [self viewSpecificRevertAnimation],														// second animation (composite pattern can be another sequence/program inside)
-	  [CPAnimationStep for:0.5 animate:^{ self.startButton.alpha = 1.0; }],						// third animation
-	  [CPAnimationStep after:0.0 for:0.0 animate:^{ self.labelHeader.text = @"Animation:";}],	// zero time completion block
+	  [CPAnimationStep for:0.0 animate:^{ self.labelHeader.text = @"Running:";}],	// zero time start block
+	  [CPAnimationStep for:0.5 animate:^{ self.revertButton.alpha = 0.0; }],		// some setup animation
+	  [self viewSpecificRevertAnimation],											// main animation
+	  [CPAnimationStep for:0.5 animate:^{ self.startButton.alpha = 1.0; }],			// some teardown animation
+	  [CPAnimationStep for:0.0 animate:^{ self.labelHeader.text = @"Animation:";}],	// zero time completion block
 	  nil
 	] run];
 }
 
 #pragma mark - composite pattern ability for CPAnimationSequence
 
-// Note: This part of the animation sequence may be implemented elsewhere.
-// Thanks to the composite-pattern implementation, you can define an animation sequence at
-// one point and insert it into another sequence/program somewhere else without knowing what happens inside.
+// Thanks to the composite-pattern implementation, you can define an animation step, sequence or program at
+// one point and insert it into another sequence/program elsewhere.
 - (CPAnimationStep*) viewSpecificStartAnimation {
 	return [CPAnimationSequence sequenceWithSteps:
 			[CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep1];
@@ -65,11 +65,8 @@
 
 #pragma mark - composite pattern ability for CPAnimationProgram
 
-// Note: This part of the animation sequence may be implemented elsewhere.
-// Thanks to the composite-pattern implementation, you can define an animation program at
-// one point and insert it into another sequence/program somewhere else without knowing what happens inside.
 - (CPAnimationStep*) viewSpecificRevertAnimation {
-	// parallel to the back animation we will animate another sequence here (the arrow)
+	// we run two sequences in parallel: stepping backwards through the steps, and moving an indicator arrow.
 	return [CPAnimationProgram programWithSteps:
 			[CPAnimationSequence sequenceWithSteps:
 			  [CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep3];
@@ -80,12 +77,18 @@
 															self.theBox.frame = CGRectMake(100, 100, 100, 100); }],
 			  [CPAnimationStep after:0.0         animate:^{ [self highlightLabel:nil]; }],
 			  nil],
-			[CPAnimationSequence sequenceWithSteps:
-			  [CPAnimationStep after:0.0 for:0.0 animate:^{ self.theIndicator.center=CGPointMake(82,534); }],
-	 		  [CPAnimationStep after:0.0 for:0.7 animate:^{ self.theIndicator.alpha=1.0; }],
-			  [CPAnimationStep			 for:4.4 animate:^{ self.theIndicator.center=CGPointMake(82,474); }],
-			  [CPAnimationStep after:0.0 for:0.7 animate:^{ self.theIndicator.alpha=0.0; }],
-			  nil],
+			[self indicatorMovingInParallelToTheSequence],
+			nil];
+}
+
+- (CPAnimationSequence*) indicatorMovingInParallelToTheSequence {
+	return [CPAnimationSequence sequenceWithSteps:
+			 [CPAnimationStep for:0.0 animate:^{ self.theIndicator.center = CGPointMake(82, self.labelStep3.center.y); }],
+			 [CPAnimationStep for:0.7 animate:^{ self.theIndicator.alpha = 1.0;
+												 self.indicatorShoutout.alpha = 1.0; }],
+			 [CPAnimationStep for:4.4 animate:^{ self.theIndicator.center = CGPointMake(82, self.labelStep1.center.y); }],
+			[CPAnimationStep for:0.7 animate:^{ self.theIndicator.alpha = 0.0;
+												self.indicatorShoutout.alpha = 0.0; }],
 			nil];
 }
 
