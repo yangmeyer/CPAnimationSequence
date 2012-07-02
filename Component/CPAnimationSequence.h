@@ -11,6 +11,8 @@
  
  CPAnimationSequence implements the Composite design pattern, with CPAnimationStep
  as the base class.
+ 
+ The delay property will be interpreted from end point of the previous step.
  */
 @interface CPAnimationSequence : CPAnimationStep
 

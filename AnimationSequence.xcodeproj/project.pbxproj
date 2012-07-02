@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0ADF9610151F80E30010E060 /* CPAnimationProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADF960F151F80E30010E060 /* CPAnimationProgram.m */; };
+		0ADF9612151F88380010E060 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADF9611151F88380010E060 /* arrow.png */; };
 		0AEE638B1459F10C00416D8F /* CPAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEE63891459F10C00416D8F /* CPAnimationSequence.m */; };
 		0AEE638C1459F10C00416D8F /* CPAnimationStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEE638A1459F10C00416D8F /* CPAnimationStep.m */; };
 		2F7BF9F813DF2E8A0074BDD0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7BF9F713DF2E8A0074BDD0 /* UIKit.framework */; };
@@ -22,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0ADF960B151F80CE0010E060 /* CPAnimationProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationProgram.h; sourceTree = "<group>"; };
+		0ADF960F151F80E30010E060 /* CPAnimationProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnimationProgram.m; sourceTree = "<group>"; };
+		0ADF9611151F88380010E060 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		0AEE63861459F10C00416D8F /* CPAnimationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationSequence.h; sourceTree = "<group>"; };
 		0AEE63871459F10C00416D8F /* CPAnimationStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationStep.h; sourceTree = "<group>"; };
 		0AEE63891459F10C00416D8F /* CPAnimationSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnimationSequence.m; sourceTree = "<group>"; };
@@ -60,6 +65,7 @@
 		0AEE63851459F10C00416D8F /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				0ADF960B151F80CE0010E060 /* CPAnimationProgram.h */,
 				0AEE63861459F10C00416D8F /* CPAnimationSequence.h */,
 				0AEE63871459F10C00416D8F /* CPAnimationStep.h */,
 				0AEE63881459F10C00416D8F /* private */,
@@ -70,6 +76,7 @@
 		0AEE63881459F10C00416D8F /* private */ = {
 			isa = PBXGroup;
 			children = (
+				0ADF960F151F80E30010E060 /* CPAnimationProgram.m */,
 				0AEE63891459F10C00416D8F /* CPAnimationSequence.m */,
 				0AEE638A1459F10C00416D8F /* CPAnimationStep.m */,
 			);
@@ -108,6 +115,7 @@
 		2F7BF9FD13DF2E8A0074BDD0 /* AnimationSequence */ = {
 			isa = PBXGroup;
 			children = (
+				0ADF9611151F88380010E060 /* arrow.png */,
 				2F7BFA0613DF2E8A0074BDD0 /* AnimationSequenceAppDelegate.h */,
 				2F7BFA0713DF2E8A0074BDD0 /* AnimationSequenceAppDelegate.m */,
 				2F7BFA0C13DF2E8A0074BDD0 /* AnimationSequenceViewController.h */,
@@ -185,6 +193,7 @@
 				2F7BFA1113DF2E8A0074BDD0 /* AnimationSequenceViewController.xib in Resources */,
 				2F7BFA2213DF42640074BDD0 /* MainWindow.xib in Resources */,
 				2F7BFA2413DF432F0074BDD0 /* README.md in Resources */,
+				0ADF9612151F88380010E060 /* arrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +209,7 @@
 				2F7BFA0E13DF2E8A0074BDD0 /* AnimationSequenceViewController.m in Sources */,
 				0AEE638B1459F10C00416D8F /* CPAnimationSequence.m in Sources */,
 				0AEE638C1459F10C00416D8F /* CPAnimationStep.m in Sources */,
+				0ADF9610151F80E30010E060 /* CPAnimationProgram.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

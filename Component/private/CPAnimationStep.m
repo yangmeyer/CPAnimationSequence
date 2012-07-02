@@ -60,6 +60,11 @@
 	return [NSArray arrayWithObject:self];
 }
 
+- (AnimationStep) animationStep:(BOOL)animated {
+	// override it if needed
+	return self.step;
+}
+
 - (void) runAnimated:(BOOL)animated {
 	if (!self.consumableSteps) {
 		self.consumableSteps = [[NSMutableArray alloc] initWithArray:[self animationStepArray]];
@@ -78,7 +83,7 @@
 		[UIView animateWithDuration:currentStep.duration
 							  delay:currentStep.delay
 							options:currentStep.options
-						 animations:currentStep.step
+						 animations:[currentStep animationStep:animated]
 						 completion:^(BOOL finished) {
 							 if (finished) {
 								 completionStep();
@@ -86,7 +91,7 @@
 						 }];
 	} else {
 		void (^execution)(void) = ^{
-			currentStep.step();
+			[currentStep animationStep:animated]();
 			completionStep();
 		};
 		
@@ -99,6 +104,7 @@
 }
 
 - (void) run {
+	NSLog(@"%@", self);
 	[self runAnimated:YES];
 }
 

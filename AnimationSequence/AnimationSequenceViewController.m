@@ -4,6 +4,13 @@
 
 #import "AnimationSequenceViewController.h"
 #import "CPAnimationSequence.h"
+#import "CPAnimationProgram.h"
+
+@interface AnimationSequenceViewController ()
+- (CPAnimationStep*) viewSpecificStartAnimation;
+- (CPAnimationStep*) viewSpecificRevertAnimation;
+- (void) highlightLabel:(UILabel*)labelToHighlight;
+@end
 
 @interface AnimationSequenceViewController ()
 - (CPAnimationStep*) viewSpecificStartAnimation;
@@ -12,41 +19,38 @@
 
 @implementation AnimationSequenceViewController
 
-@synthesize theBox, startButton, revertButton;
-@synthesize labelStep1, labelStep2, labelStep3;
+@synthesize theBox, startButton, revertButton, theIndicator;
+@synthesize labelHeader, labelStep1, labelStep2, labelStep3;
 
 #pragma mark - CPAnimationSequence demo
 
 - (IBAction) startAnimation {
 	CPAnimationSequence* animationSequence = [CPAnimationSequence sequenceWithSteps:
-	  [CPAnimationStep for:0.5 animate:^{ self.startButton.alpha = 0.0; }],
-	  [self viewSpecificStartAnimation],
-	  [CPAnimationStep for:0.5 animate:^{ self.revertButton.alpha = 1.0; }],
+	  [CPAnimationStep after:0.0 for:0.0 animate:^{ self.labelHeader.text = @"Running:";}],		// zero time start block
+	  [CPAnimationStep for:0.5 animate:^{ self.startButton.alpha = 0.0; }],						// first animation
+	  [self viewSpecificStartAnimation],														// second animation (composite pattern can be another sequence/program inside)
+	  [CPAnimationStep for:0.5 animate:^{ self.revertButton.alpha = 1.0; }],					// third animation
+	  [CPAnimationStep after:0.0 for:0.0 animate:^{ self.labelHeader.text = @"Animation:";}],	// zero time completion block
 	  nil];
 	[animationSequence run];
 }
 
 - (IBAction) revertAnimation {
 	[[CPAnimationSequence sequenceWithSteps:
-	  [CPAnimationStep for:0.5 animate:^{ self.revertButton.alpha = 0.0; }],
-	  [CPAnimationSequence sequenceWithSteps:
-	   [CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep3];
-													 self.theBox.transform = CGAffineTransformIdentity; }],
-	   [CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep2];
-													 self.theBox.backgroundColor = [UIColor greenColor]; }],
-	   [CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep1];
-													 self.theBox.frame = CGRectMake(100, 100, 100, 100); }],
-	   [CPAnimationStep after:0.0         animate:^{ [self highlightLabel:nil]; }],
-	   nil
-	   ],
-	  [CPAnimationStep for:0.5 animate:^{ self.startButton.alpha = 1.0; }],
+	  [CPAnimationStep after:0.0 for:0.0 animate:^{ self.labelHeader.text = @"Running:";}],		// zero time start block
+	  [CPAnimationStep for:0.5 animate:^{ self.revertButton.alpha = 0.0; }],					// first animation
+	  [self viewSpecificRevertAnimation],														// second animation (composite pattern can be another sequence/program inside)
+	  [CPAnimationStep for:0.5 animate:^{ self.startButton.alpha = 1.0; }],						// third animation
+	  [CPAnimationStep after:0.0 for:0.0 animate:^{ self.labelHeader.text = @"Animation:";}],	// zero time completion block
 	  nil
 	] run];
 }
 
+#pragma mark - composite pattern ability for CPAnimationSequence
+
 // Note: This part of the animation sequence may be implemented elsewhere.
 // Thanks to the composite-pattern implementation, you can define an animation sequence at
-// one point and insert it into another sequence somewhere else.
+// one point and insert it into another sequence/program somewhere else without knowing what happens inside.
 - (CPAnimationStep*) viewSpecificStartAnimation {
 	return [CPAnimationSequence sequenceWithSteps:
 			[CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep1];
@@ -56,6 +60,32 @@
 			[CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep3];
 														  self.theBox.transform = CGAffineTransformMakeScale(2.0, 2.0); }],
 			[CPAnimationStep after:0.0         animate:^{ [self highlightLabel:nil]; }],
+			nil];
+}
+
+#pragma mark - composite pattern ability for CPAnimationProgram
+
+// Note: This part of the animation sequence may be implemented elsewhere.
+// Thanks to the composite-pattern implementation, you can define an animation program at
+// one point and insert it into another sequence/program somewhere else without knowing what happens inside.
+- (CPAnimationStep*) viewSpecificRevertAnimation {
+	// parallel to the back animation we will animate another sequence here (the arrow)
+	return [CPAnimationProgram programWithSteps:
+			[CPAnimationSequence sequenceWithSteps:
+			  [CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep3];
+															self.theBox.transform = CGAffineTransformIdentity; }],
+			  [CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep2];
+															self.theBox.backgroundColor = [UIColor greenColor]; }],
+			  [CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep1];
+															self.theBox.frame = CGRectMake(100, 100, 100, 100); }],
+			  [CPAnimationStep after:0.0         animate:^{ [self highlightLabel:nil]; }],
+			  nil],
+			[CPAnimationSequence sequenceWithSteps:
+			  [CPAnimationStep after:0.0 for:0.0 animate:^{ self.theIndicator.center=CGPointMake(82,534); }],
+	 		  [CPAnimationStep after:0.0 for:0.7 animate:^{ self.theIndicator.alpha=1.0; }],
+			  [CPAnimationStep			 for:4.4 animate:^{ self.theIndicator.center=CGPointMake(82,474); }],
+			  [CPAnimationStep after:0.0 for:0.7 animate:^{ self.theIndicator.alpha=0.0; }],
+			  nil],
 			nil];
 }
 
