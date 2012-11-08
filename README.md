@@ -34,23 +34,21 @@ The component implements the Composite design pattern, which means that you can 
 
 Requirements
 -------
-* Made for projects under [ARC](http://developer.apple.com/library/ios/#releasenotes/ObjectiveC/RN-TransitioningToARC/_index.html); you will therefore need to use SDK 5.0+.
+* CPAnimationSequence uses [ARC](http://developer.apple.com/library/ios/#releasenotes/ObjectiveC/RN-TransitioningToARC/_index.html). If your project doesn’t use ARC, set the `-fobjc-arc` compiler flag on the CPAnimationSequence source files.
 * Deployment target iOS 4.3+ (The demo targets iOS 5.0, but is easily adapted for iOS 4.3).
 
 Participate
 -------
 Feel free to comment, fork, and submit pull requests!
 
+Thanks for the contributions from:
+
+- Karsten Litsche
+- Matthew McCroskey
+- Stephan Diederich
+
 License
 -------
 Copyright (c) 2011–2012 compeople AG.
 
-The CPAnimationSequence component is released under the MIT License.
-
-### The MIT License (MIT)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+The CPAnimationSequence component is released under the [MIT License](https://github.com/yangmeyer/CPAnimationSequence/blob/master/LICENSE.md).
