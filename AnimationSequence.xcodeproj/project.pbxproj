@@ -165,8 +165,8 @@
 		2F7BF9EA13DF2E8A0074BDD0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
-				ORGANIZATIONNAME = "compeople AG";
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "compeople AG, Yang Meyer";
 			};
 			buildConfigurationList = 2F7BF9ED13DF2E8A0074BDD0 /* Build configuration list for PBXProject "AnimationSequence" */;
 			compatibilityVersion = "Xcode 3.2";
