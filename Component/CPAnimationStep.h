@@ -1,11 +1,14 @@
 
 //  Created by Yang Meyer on 26.07.11.
-//  Copyright 2011 compeople AG. All rights reserved.
+//  Copyright 2011 compeople AG, 2013 Yang Meyer. All rights reserved.
 
 #import <Foundation/Foundation.h>
 
-/** Helper type definition for the component. */
-typedef void (^AnimationStep)(void);
+/** Generic block type */
+typedef void (^CPAnimationStepBlock)(void);
+
+/** Backwards-compatibility */
+typedef CPAnimationStepBlock AnimationStep __deprecated;
 
 /** 
  A CPAnimationStep defines a single animation object with a delay, duration, execution block and animation options.
@@ -15,25 +18,25 @@ typedef void (^AnimationStep)(void);
 #pragma mark - constructors
 
 + (id) after:(NSTimeInterval)delay
-	 animate:(AnimationStep)step;
+	 animate:(CPAnimationStepBlock)step;
 
 + (id) for:(NSTimeInterval)duration
-   animate:(AnimationStep)step;
+   animate:(CPAnimationStepBlock)step;
 
 + (id) after:(NSTimeInterval)delay
 		 for:(NSTimeInterval)duration
-	 animate:(AnimationStep)step;
+	 animate:(CPAnimationStepBlock)step;
 
 + (id) after:(NSTimeInterval)delay
 		 for:(NSTimeInterval)duration
 	 options:(UIViewAnimationOptions)theOptions
-	 animate:(AnimationStep)step;
+	 animate:(CPAnimationStepBlock)step;
 
 #pragma mark - properties (normally already set by the constructor)
 
 @property (nonatomic) NSTimeInterval delay;
 @property (nonatomic) NSTimeInterval duration;
-@property (nonatomic, copy) AnimationStep step;
+@property (nonatomic, copy) CPAnimationStepBlock step;
 @property (nonatomic) UIViewAnimationOptions options;
 
 #pragma mark - execution

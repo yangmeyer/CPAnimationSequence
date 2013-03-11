@@ -1,6 +1,6 @@
 
 //  Created by Yang Meyer on 26.07.11.
-//  Copyright 2011-2012 compeople AG. All rights reserved.
+//  Copyright 2011-2012 compeople AG, 2013 Yang Meyer. All rights reserved.
 
 #import "CPAnimationStep.h"
 
@@ -21,22 +21,22 @@
 
 #pragma mark construction
 
-+ (id) after:(NSTimeInterval)delay animate:(AnimationStep)step {
++ (id) after:(NSTimeInterval)delay animate:(CPAnimationStepBlock)step {
 	return [self after:delay for:0.0 options:0 animate:step];
 }
 
-+ (id) for:(NSTimeInterval)duration animate:(AnimationStep)step {
++ (id) for:(NSTimeInterval)duration animate:(CPAnimationStepBlock)step {
    return [self after:0.0 for:duration options:0 animate:step];
 }
 
-+ (id) after:(NSTimeInterval)delay for:(NSTimeInterval)duration animate:(AnimationStep)step {
++ (id) after:(NSTimeInterval)delay for:(NSTimeInterval)duration animate:(CPAnimationStepBlock)step {
 	return [self after:delay for:duration options:0 animate:step];
 }
 
 + (id) after:(NSTimeInterval)theDelay
 		 for:(NSTimeInterval)theDuration
 	 options:(UIViewAnimationOptions)theOptions
-	 animate:(AnimationStep)theStep {
+	 animate:(CPAnimationStepBlock)theStep {
 	
 	CPAnimationStep* instance = [[self alloc] init];
 	if (instance) {
@@ -51,7 +51,7 @@
 #pragma mark action
 
 // From http://stackoverflow.com/questions/4007023/blocks-instead-of-performselectorwithobjectafterdelay
-+ (void) runBlock:(AnimationStep)block afterDelay:(NSTimeInterval)delay {
++ (void) runBlock:(CPAnimationStepBlock)block afterDelay:(NSTimeInterval)delay {
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC*delay), dispatch_get_current_queue(), block);
 }
 
@@ -60,7 +60,7 @@
 	return [NSArray arrayWithObject:self];
 }
 
-- (AnimationStep) animationStep:(BOOL)animated {
+- (CPAnimationStepBlock) animationStep:(BOOL)animated {
 	// override it if needed
 	return self.step;
 }
@@ -73,7 +73,7 @@
 		self.consumableSteps = nil;
 		return; // we're done
 	}
-	AnimationStep completionStep = ^{
+	CPAnimationStepBlock completionStep = ^{
 		[self.consumableSteps removeLastObject];
 		[self runAnimated:animated]; // recurse!
 	};
