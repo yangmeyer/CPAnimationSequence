@@ -16,9 +16,6 @@
 #pragma mark -
 @implementation CPAnimationProgram
 
-@synthesize steps;
-@synthesize duration;
-
 #pragma mark - Object lifecycle
 
 + (id) programWithSteps:(CPAnimationStep*)first, ... {

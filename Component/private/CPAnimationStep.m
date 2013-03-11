@@ -13,12 +13,6 @@
 
 @implementation CPAnimationStep
 
-@synthesize delay, duration, step, options;
-@synthesize consumableSteps;
-
-#pragma mark overrides
-
-
 #pragma mark construction
 
 + (id) after:(NSTimeInterval)delay animate:(CPAnimationStepBlock)step {
@@ -104,7 +98,6 @@
 }
 
 - (void) run {
-	NSLog(@"%@", self);
 	[self runAnimated:YES];
 }
 

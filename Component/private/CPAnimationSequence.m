@@ -15,8 +15,6 @@
 #pragma mark -
 @implementation CPAnimationSequence
 
-@synthesize steps;
-
 #pragma mark - Object lifecycle
 
 + (id) sequenceWithSteps:(CPAnimationStep*)first, ... {
@@ -35,7 +33,6 @@
 	}
 	return instance;
 }
-
 
 #pragma mark - property override
 
