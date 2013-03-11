@@ -1,8 +1,7 @@
 CPAnimationSequence
 ===================
 
-**Declaratively describe animation sequences** that consist
-of multiple steps.
+**Describe multi-step animation sequences declaratively.**
 
 Something like this:
 
@@ -49,6 +48,6 @@ Thanks for the contributions from:
 
 License
 -------
-Copyright (c) 2011–2012 compeople AG.
+Copyright (c) 2011–2012 compeople AG, 2013 Yang Meyer.
 
 The CPAnimationSequence component is released under the [MIT License](https://github.com/yangmeyer/CPAnimationSequence/blob/master/LICENSE.md).

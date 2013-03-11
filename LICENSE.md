@@ -1,7 +1,7 @@
 License
 ======
 
-Copyright (c) 2011–2012 compeople AG.
+Copyright (c) 2011–2012 compeople AG, 2013 Yang Meyer.
 
 The CPAnimationSequence component is released under the MIT License.
 
