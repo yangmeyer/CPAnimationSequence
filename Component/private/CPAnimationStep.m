@@ -112,7 +112,7 @@
 		[result appendFormat:@"for:%.1f ", self.duration];
 	}
 	if (self.options > 0) {
-		[result appendFormat:@"options:%d ", self.options];
+		[result appendFormat:@"options:%lu ", (unsigned long)self.options];
 	}
 	[result appendFormat:@"animate:%@", self.step];
 	[result appendString:@"]"];
