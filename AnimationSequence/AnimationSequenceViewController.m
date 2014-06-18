@@ -26,25 +26,38 @@
 #pragma mark - CPAnimationSequence demo
 
 - (IBAction) startAnimation {
-	CPAnimationSequence* animationSequence = [CPAnimationSequence sequenceWithSteps:
+	self.animationSequence = [CPAnimationSequence sequenceWithSteps:
 	  [CPAnimationStep for:0.0 animate:^{ self.labelHeader.text = @"Running:";}],	// zero time start block
 	  [CPAnimationStep for:0.5 animate:^{ self.startButton.alpha = 0.0; }],			// some setup animation
 	  [self viewSpecificStartAnimation],											// main animation
 	  [CPAnimationStep for:0.5 animate:^{ self.revertButton.alpha = 1.0; }],		// some teardown animation
-	  [CPAnimationStep for:0.0 animate:^{ self.labelHeader.text = @"Animation:";}],	// zero time completion block
+	  [CPAnimationStep for:0.0 animate:^{ self.labelHeader.text = @"Animation:";
+                                          self.cancelButton.enabled = NO; }],	// zero time completion block
 	  nil];
-	[animationSequence run];
+	[self.animationSequence run];
+    self.cancelButton.enabled = YES;
 }
 
 - (IBAction) revertAnimation {
-	[[CPAnimationSequence sequenceWithSteps:
-	  [CPAnimationStep for:0.0 animate:^{ self.labelHeader.text = @"Running:";}],	// zero time start block
-	  [CPAnimationStep for:0.5 animate:^{ self.revertButton.alpha = 0.0; }],		// some setup animation
-	  [self viewSpecificRevertAnimation],											// main animation
-	  [CPAnimationStep for:0.5 animate:^{ self.startButton.alpha = 1.0; }],			// some teardown animation
-	  [CPAnimationStep for:0.0 animate:^{ self.labelHeader.text = @"Animation:";}],	// zero time completion block
-	  nil
-	] run];
+    self.animationSequence = [CPAnimationSequence sequenceWithSteps:
+                              [CPAnimationStep for:0.0 animate:^{ self.labelHeader.text = @"Running:";}],	// zero time start block
+                              [CPAnimationStep for:0.5 animate:^{ self.revertButton.alpha = 0.0; }],		// some setup animation
+                              [self viewSpecificRevertAnimation],											// main animation
+                              [CPAnimationStep for:0.5 animate:^{ self.startButton.alpha = 1.0; }],			// some teardown animation
+                              [CPAnimationStep for:0.0 animate:^{ self.labelHeader.text = @"Animation:";
+                                                                  self.cancelButton.enabled = NO; }],	// zero time completion block
+                              nil
+                              ];
+	[ self.animationSequence run ];
+    self.cancelButton.enabled = YES;
+}
+
+- (IBAction) cancelAnimation
+{
+    [ self.animationSequence cancel ];
+    self.cancelButton.enabled = NO;
+    self.startButton.alpha = 1.0;
+    self.revertButton.alpha = 0;
 }
 
 #pragma mark - composite pattern ability for CPAnimationSequence
