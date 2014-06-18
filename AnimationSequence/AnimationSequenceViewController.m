@@ -19,7 +19,8 @@
 
 @implementation AnimationSequenceViewController
 
-@synthesize theBox, startButton, revertButton;
+@synthesize theBox, startButton, revertButton, cancelButton;
+@synthesize animationSequence;
 @synthesize labelHeader, labelStep1, labelStep2, labelStep3;
 @synthesize indicatorShoutout, theIndicator;
 
