@@ -9,6 +9,7 @@
  It is created when the step is run, and is modified during the animation, 
  and is destroyed when the animation finishes. */
 @property (nonatomic, strong) NSMutableArray* consumableSteps;
+@property BOOL cancelRequested;
 @end
 
 @implementation CPAnimationStep
@@ -59,7 +60,12 @@
 }
 
 - (void) runAnimated:(BOOL)animated {
-	if (!self.consumableSteps) {
+	
+    if (self.cancelRequested) {
+        return;
+    }
+    
+    if (!self.consumableSteps) {
 		self.consumableSteps = [[NSMutableArray alloc] initWithArray:[self animationStepArray]];
 	}
 	if (![self.consumableSteps count]) { // recursion anchor
@@ -100,6 +106,10 @@
 	[self runAnimated:YES];
 }
 
+-(void) cancel {
+    self.cancelRequested = YES;
+}
+
 #pragma mark - pretty-print
 
 - (NSString*) description {
@@ -113,6 +123,9 @@
 	}
 	if (self.options > 0) {
 		[result appendFormat:@"options:%lu ", (unsigned long)self.options];
+	}
+	if (self.cancelRequested) {
+		[result appendString: @"cancel requested " ];
 	}
 	[result appendFormat:@"animate:%@", self.step];
 	[result appendString:@"]"];

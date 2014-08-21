@@ -35,6 +35,13 @@
 	return instance;
 }
 
+-(void) cancel
+{
+    [super cancel];
+    for (CPAnimationStep* currentStep in self.steps) {
+        [currentStep cancel];
+    }
+}
 
 #pragma mark - property override
 

@@ -46,4 +46,6 @@ typedef CPAnimationStepBlock AnimationStep __deprecated;
 /** Shortcut for [step runAnimated:YES] */
 - (void) run;
 
+-(void) cancel;
+
 @end

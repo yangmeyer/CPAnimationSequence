@@ -12,6 +12,7 @@
 @property (nonatomic, weak) IBOutlet UIView* theBox;
 @property (nonatomic, weak) IBOutlet UIButton* startButton;
 @property (nonatomic, weak) IBOutlet UIButton* revertButton;
+@property (nonatomic, weak) IBOutlet UIButton* cancelButton;
 
 @property (weak, nonatomic) IBOutlet UILabel* labelHeader;
 @property (weak, nonatomic) IBOutlet UILabel* labelStep1;
@@ -21,7 +22,11 @@
 @property (weak, nonatomic) IBOutlet UIView* theIndicator;
 @property (weak, nonatomic) IBOutlet UIView* indicatorShoutout;
 
+@property (nonatomic, weak) CPAnimationSequence* animationSequence;
+
+
 - (IBAction) startAnimation;
 - (IBAction) revertAnimation;
+- (IBAction) cancelAnimation;
 
 @end
