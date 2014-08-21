@@ -37,10 +37,9 @@
 
 -(void) cancel
 {
-    [ super cancel ];
-    for( CPAnimationStep* currentStep in self.steps )
-    {
-        [ currentStep cancel ];
+    [super cancel];
+    for (CPAnimationStep* currentStep in self.steps) {
+        [currentStep cancel];
     }
 }
 

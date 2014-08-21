@@ -61,8 +61,7 @@
 
 - (void) runAnimated:(BOOL)animated {
 	
-    if( self.cancelRequested )
-    {
+    if (self.cancelRequested) {
         return;
     }
     
@@ -125,7 +124,7 @@
 	if (self.options > 0) {
 		[result appendFormat:@"options:%lu ", (unsigned long)self.options];
 	}
-	if (self.cancelRequested ) {
+	if (self.cancelRequested) {
 		[result appendFormat:@"cancel Requested:%hhd ", self.cancelRequested ];
 	}
 	[result appendFormat:@"animate:%@", self.step];

@@ -49,13 +49,13 @@
                                                                   self.cancelButton.enabled = NO; }],	// zero time completion block
                               nil
                               ];
-	[ self.animationSequence run ];
+	[self.animationSequence run];
     self.cancelButton.enabled = YES;
 }
 
 - (IBAction) cancelAnimation
 {
-    [ self.animationSequence cancel ];
+    [self.animationSequence cancel];
     self.cancelButton.enabled = NO;
     self.startButton.alpha = 1.0;
     self.revertButton.alpha = 0;
