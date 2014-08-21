@@ -125,7 +125,7 @@
 		[result appendFormat:@"options:%lu ", (unsigned long)self.options];
 	}
 	if (self.cancelRequested) {
-		[result appendFormat:@"cancel Requested:%hhd ", self.cancelRequested ];
+		[result appendString: @"cancel requested " ];
 	}
 	[result appendFormat:@"animate:%@", self.step];
 	[result appendString:@"]"];
