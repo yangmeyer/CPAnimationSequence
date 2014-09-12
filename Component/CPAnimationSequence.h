@@ -19,6 +19,7 @@
 #pragma mark - constructors
 
 + (id) sequenceWithSteps:(CPAnimationStep*)first, ... NS_REQUIRES_NIL_TERMINATION;
++ (id) sequenceWithStepsByArray:(NSArray *)steps;
 
 #pragma mark - properties
 

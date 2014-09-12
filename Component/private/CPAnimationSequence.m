@@ -34,6 +34,15 @@
 	return instance;
 }
 
++ (id) sequenceWithStepsByArray:(NSArray *)steps
+{
+  CPAnimationSequence* instance = [[self alloc] init];
+  if (instance) {
+    instance.steps = [NSArray arrayWithArray:steps];
+  }
+  return instance;
+}
+
 -(void) cancel
 {
     [ super cancel ];
