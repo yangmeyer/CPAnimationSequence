@@ -38,7 +38,7 @@
 {
   CPAnimationSequence* instance = [[self alloc] init];
   if (instance) {
-    instance.steps = [NSArray arrayWithArray:steps];
+    instance.steps = [NSArray arrayWithArray:[[steps reverseObjectEnumerator] allObjects]];
   }
   return instance;
 }
