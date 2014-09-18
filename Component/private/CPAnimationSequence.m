@@ -36,9 +36,15 @@
 
 + (id) sequenceWithStepsByArray:(NSArray *)steps
 {
+  return [self sequenceWithStepsByArray:steps factor:1.f];
+}
+
++ (id) sequenceWithStepsByArray:(NSArray *)steps factor:(CGFloat)factor
+{
   CPAnimationSequence* instance = [[self alloc] init];
   if (instance) {
     instance.steps = [NSArray arrayWithArray:[[steps reverseObjectEnumerator] allObjects]];
+    instance.factor = factor;
   }
   return instance;
 }
@@ -52,6 +58,10 @@
     }
 }
 
+- (void) runAnimated:(BOOL)animated {
+    [self runAnimated:animated factor:self.factor];
+}
+
 #pragma mark - property override
 
 - (void) setDelay:(NSTimeInterval)delay {
@@ -62,13 +72,17 @@
     NSAssert(NO, @"Setting a duration on a sequence is undefined and therefore disallowed!");
 }
 
+- (CGFloat)factor {
+    return _factor > 0.f ? _factor : 1.f;
+}
+
 - (NSTimeInterval) duration {
 	NSTimeInterval fullDuration = 0;
 	for (CPAnimationStep* current in self.animationStepArray) {
 		fullDuration += current.delay;
 		fullDuration += current.duration;
 	}
-	return fullDuration+self.delay;
+	return (fullDuration+self.delay) * self.factor;
 }
 
 - (void) setOptions:(UIViewAnimationOptions)options {

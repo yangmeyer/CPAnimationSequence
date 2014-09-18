@@ -20,10 +20,12 @@
 
 + (id) sequenceWithSteps:(CPAnimationStep*)first, ... NS_REQUIRES_NIL_TERMINATION;
 + (id) sequenceWithStepsByArray:(NSArray *)steps;
++ (id) sequenceWithStepsByArray:(NSArray *)steps factor:(CGFloat)factor;
 
 #pragma mark - properties
 
 /** Animations steps, from first to last. */
 @property (nonatomic, strong, readonly) NSArray* steps;
+@property (nonatomic, assign) CGFloat factor;
 
 @end
