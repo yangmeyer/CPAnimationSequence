@@ -32,10 +32,19 @@ typedef CPAnimationStepBlock AnimationStep __deprecated;
 	 options:(UIViewAnimationOptions)theOptions
 	 animate:(CPAnimationStepBlock)step;
 
++ (id) after:(NSTimeInterval)delay
+		 for:(NSTimeInterval)duration
+	 damping:(CGFloat) dampingRatio
+	velocity:(CGFloat) velocity
+	 options:(UIViewAnimationOptions)theOptions
+	 animate:(CPAnimationStepBlock)step;
+
 #pragma mark - properties (normally already set by the constructor)
 
 @property (nonatomic) NSTimeInterval delay;
 @property (nonatomic) NSTimeInterval duration;
+@property (nonatomic) CGFloat damping;
+@property (nonatomic) CGFloat velocity;
 @property (nonatomic, copy) CPAnimationStepBlock step;
 @property (nonatomic) UIViewAnimationOptions options;
 

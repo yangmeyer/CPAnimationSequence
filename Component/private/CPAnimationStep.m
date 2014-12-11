@@ -17,27 +17,39 @@
 #pragma mark construction
 
 + (id) after:(NSTimeInterval)delay animate:(CPAnimationStepBlock)step {
-	return [self after:delay for:0.0 options:0 animate:step];
+	return [self after:delay for:0.0 damping:1 velocity:0 options:0 animate:step];
 }
 
 + (id) for:(NSTimeInterval)duration animate:(CPAnimationStepBlock)step {
-   return [self after:0.0 for:duration options:0 animate:step];
+	return [self after:0.0 for:duration damping:1 velocity:0 options:0 animate:step];
 }
 
 + (id) after:(NSTimeInterval)delay for:(NSTimeInterval)duration animate:(CPAnimationStepBlock)step {
-	return [self after:delay for:duration options:0 animate:step];
+	return [self after:delay for:duration damping:1 velocity:0 options:0 animate:step];
+}
+
++ (id)after:(NSTimeInterval)delay
+		for:(NSTimeInterval)duration
+	options:(UIViewAnimationOptions)theOptions
+	animate:(CPAnimationStepBlock)step
+{
+	return [self after:delay for:duration damping:1 velocity:0 options:theOptions animate:step];
 }
 
 + (id) after:(NSTimeInterval)theDelay
 		 for:(NSTimeInterval)theDuration
+	 damping:(CGFloat) dampingRatio
+	velocity:(CGFloat) velocity
 	 options:(UIViewAnimationOptions)theOptions
-	 animate:(CPAnimationStepBlock)theStep {
-	
+	 animate:(CPAnimationStepBlock)theStep
+{
 	CPAnimationStep* instance = [[self alloc] init];
 	if (instance) {
 		instance.delay = theDelay;
 		instance.duration = theDuration;
 		instance.options = theOptions;
+		instance.damping = dampingRatio;
+		instance.velocity = velocity;
 		instance.step = [theStep copy];
 	}
 	return instance;
@@ -81,6 +93,8 @@
 	if (animated && currentStep.duration >= 0.02) {
 		[UIView animateWithDuration:currentStep.duration
 							  delay:currentStep.delay
+			 usingSpringWithDamping:currentStep.damping
+			  initialSpringVelocity:currentStep.velocity
 							options:currentStep.options
 						 animations:[currentStep animationStep:animated]
 						 completion:^(BOOL finished) {
@@ -120,6 +134,12 @@
 	}
 	if (self.duration > 0.0) {
 		[result appendFormat:@"for:%.1f ", self.duration];
+	}
+	if (self.damping < 1.0) {
+		[result appendFormat:@"damping:%.1f ", self.damping];
+	}
+	if (self.damping < 1.0) {
+		[result appendFormat:@"velocity:%.1f ", self.velocity];
 	}
 	if (self.options > 0) {
 		[result appendFormat:@"options:%lu ", (unsigned long)self.options];
