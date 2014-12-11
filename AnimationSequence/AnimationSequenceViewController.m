@@ -70,9 +70,10 @@
 			[CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep1];
 														  self.theBox.frame = CGRectMake(150, 150, 100, 100); }],
 			[CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep2];
-														  self.theBox.backgroundColor = [UIColor orangeColor]; }],
-			[CPAnimationStep after:0.7 for:1.0 animate:^{ [self highlightLabel:self.labelStep3];
-														  self.theBox.transform = CGAffineTransformMakeScale(2.0, 2.0); }],
+		self.theBox.backgroundColor = [UIColor orangeColor]; }],
+			[CPAnimationStep after:0.7 for:1.0 damping:0.5 velocity:1 options:0 animate:^{
+		[self highlightLabel:self.labelStep3];
+		self.theBox.transform = CGAffineTransformMakeScale(2.0, 2.0); }],
 			[CPAnimationStep after:0.0         animate:^{ [self highlightLabel:nil]; }],
 			nil];
 }
