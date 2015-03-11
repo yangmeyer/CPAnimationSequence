@@ -1,0 +1,27 @@
+
+# Howdy, developer!
+# Your designer is using Gemba to push assets directly into this Git repo. Woohoo!
+# 
+# With Gemba, designers can update existing assets all by themselves, without your help.
+# New assets are put in a default directory. You can move them (e.g. into an Asset Catalog),
+# and subsequent updates from the designer will go to that new location.
+# 
+# This YAML file lets you tweak how Gemba uses this repo. Push changes to this file,
+# and your designers will use your updated config next time they launch Gemba.
+
+remote_url: https://github.com/karstenlitsche/CPAnimationSequence.git
+asset_extensions:
+- jpeg
+- jpg
+- png
+- gif
+commit_message_prefix: ''
+ignored_dirs:
+- Pods
+- Frameworks
+- Submodules
+- External
+repo_name: CPAnimationSequence
+
+# -- 
+# Please contact support@gemba.io for any questions or comments.
