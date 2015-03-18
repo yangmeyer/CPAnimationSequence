@@ -43,8 +43,10 @@ typedef CPAnimationStepBlock AnimationStep __deprecated;
 
 /** Starts the step execution. */
 - (void) runAnimated:(BOOL)animated;
+- (void) runAnimated:(BOOL)animated factor:(CGFloat)factor;
 /** Shortcut for [step runAnimated:YES] */
 - (void) run;
+- (void) run:(CGFloat)factor;
 
 -(void) cancel;
 

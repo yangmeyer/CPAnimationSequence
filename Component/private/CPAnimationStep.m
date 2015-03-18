@@ -60,9 +60,17 @@
 }
 
 - (void) runAnimated:(BOOL)animated {
+  [self runAnimated:animated factor:1.f];
+}
+
+- (void) runAnimated:(BOOL)animated factor:(CGFloat)factor {
 	
     if (self.cancelRequested) {
         return;
+    }
+  
+    if (factor <= 0.f) {
+      factor = 1.f;
     }
     
     if (!self.consumableSteps) {
@@ -78,9 +86,9 @@
 	};
 	CPAnimationStep* currentStep = [self.consumableSteps lastObject];
 	// Note: do not animate to short steps
-	if (animated && currentStep.duration >= 0.02) {
-		[UIView animateWithDuration:currentStep.duration
-							  delay:currentStep.delay
+	if (animated && currentStep.duration * factor >= 0.02) {
+		[UIView animateWithDuration:currentStep.duration * factor
+							  delay:currentStep.delay * factor
 							options:currentStep.options
 						 animations:[currentStep animationStep:animated]
 						 completion:^(BOOL finished) {
@@ -95,7 +103,7 @@
 		};
 		
 		if (animated && currentStep.delay) {
-			[CPAnimationStep runBlock:execution afterDelay:currentStep.delay];
+			[CPAnimationStep runBlock:execution afterDelay:currentStep.delay * factor];
 		} else {
 			execution();
 		}
@@ -103,7 +111,11 @@
 }
 
 - (void) run {
-	[self runAnimated:YES];
+  [self runAnimated:YES];
+}
+
+- (void) run:(CGFloat)factor {
+  [self runAnimated:YES factor:factor];
 }
 
 -(void) cancel {
